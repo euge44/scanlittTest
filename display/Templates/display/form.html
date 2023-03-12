@@ -1,0 +1,22 @@
+{% extends 'display/home.html' %}
+
+{% block content %}
+<section class="vh-100" style="background-color: #508bfc;">
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+                    <form enctype="multipart/form-data" method="post"  action="/display/">
+                    {% csrf_token %}
+                    <h3>Bienvenue sur l'afficheur</h3>
+                        {{ form }}
+                        <input type="submit" value="Envoyer">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+{% endblock %}

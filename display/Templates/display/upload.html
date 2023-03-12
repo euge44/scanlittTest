@@ -1,0 +1,38 @@
+{% extends 'display/home.html' %}
+
+{% block content %}
+  <div class="container mb-3">
+    <div class="new_form mt-5 mb-5">
+      <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+                <form enctype="multipart/form-data" method="post"  action="/display/">
+                    {% csrf_token %}
+                    <h3>Upload another file</h3>
+                        {{ form }}
+                        <input type="submit" value="Envoyer">
+                </form>
+            </div>
+        </div>
+    </div>
+    <h3>Documents regroupés par cluster :</h3>
+    <div class="mt-4">
+    {% if clusters %}
+      {% for cluster in clusters.items %}
+      <div class="card mt-3">
+        <div class="card body ps-3">
+          <h5 class="card-title mt-1 mb-4">Cluster numéro {{cluster.0}}</h5>
+          {% for donne in cluster %}
+          {% for doc in donne %}
+          {% if doc.Title %}
+              <p class="card-text">Titre : {{doc.Title}} | Nombre de citations : {{doc.Citation_count}} </p>
+          {%endif%}
+          {% endfor %}
+            {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    {% endif %}
+
+</div>
+  </div>
+{% endblock %}
